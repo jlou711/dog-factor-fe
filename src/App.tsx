@@ -1,5 +1,6 @@
+import Navbar from "./components/Navbar";
 function App(): JSX.Element {
-  return <h1></h1>;
+  return <Navbar />;
 }
 
 export default App;

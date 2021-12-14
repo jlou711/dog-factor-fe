@@ -5,11 +5,13 @@ import { Dog } from "./utils/interfaces";
 import DogCard from "./components/DogCard";
 import Leaderboard from "./components/Leaderboard";
 
+const baseUrl = process.env.REACT_APP_API_URL;
+
 function App(): JSX.Element {
   const [dogs, setDogs] = useState<Dog[]>([]);
 
   const getDogs = async () => {
-    const res = await axios.get(`https://dog-proj.herokuapp.com/`);
+    const res = await axios.get(`${baseUrl}/`);
     setDogs(res.data);
   };
 
@@ -26,7 +28,7 @@ function App(): JSX.Element {
             <DogCard dogs={dogs} />
           </div>
           <div className="col-md-3">
-            <Leaderboard />
+            <Leaderboard dogs={dogs} />
           </div>
         </div>
       </div>

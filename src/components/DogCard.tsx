@@ -1,25 +1,23 @@
 import "../styles/DogCard.css";
-// import axios from "axios";
+import axios from "axios";
 import { Dog } from "../utils/interfaces";
+import { displayDogName } from "../utils/displayDogName";
+import { useState } from "react";
 
 interface Props {
   dogs: Dog[];
 }
 
-// const baseUrl = process.env.REACT_APP_API_URL;
+const baseUrl = process.env.REACT_APP_API_URL;
 
 export default function DogCard(props: Props): JSX.Element {
   const { breed1, breed2 } = getRandomBreeds(props.dogs);
 
-  // const handleVote = async (breed: string) => {
-  //   const res = await axios.get(`${baseUrl}/dogs/${breed}`);
-  //   console.log(res.data);
-  //   if (res.data) {
-  //     // Patch call
-  //   } else {
-  //     // Post call
-  //   }
-  // };
+  const handleVote = async (breed: Dog | undefined) => {
+    if (breed) {
+      await axios.put(`${baseUrl}/${breed.id}`);
+    }
+  };
 
   function getRandomBreeds(dogArray: Dog[]) {
     let breed1;
@@ -49,11 +47,11 @@ export default function DogCard(props: Props): JSX.Element {
           alt="..."
         />
         <div className="card-body">
-          <h5 className="card-title">Vote for {breed1 ? breed1.breed : ""}</h5>
+          <h5 className="card-title">
+            Vote for {breed1 ? displayDogName(breed1.breed) : ""}
+          </h5>
           <p className="card-text">
-            <button onClick={() => console.log(breed1 ? breed1.breed : "")}>
-              Vote
-            </button>
+            <button onClick={() => handleVote(breed1)}>Vote</button>
           </p>
         </div>
       </div>
@@ -64,11 +62,11 @@ export default function DogCard(props: Props): JSX.Element {
           alt="..."
         />
         <div className="card-body">
-          <h5 className="card-title">Vote for {breed2 ? breed2.breed : ""}</h5>
+          <h5 className="card-title">
+            Vote for {breed2 ? displayDogName(breed2.breed) : ""}
+          </h5>
           <p className="card-text">
-            <button onClick={() => console.log(breed2 ? breed2.breed : "")}>
-              Vote
-            </button>
+            <button onClick={() => handleVote(breed2)}>Vote</button>
           </p>
         </div>
       </div>

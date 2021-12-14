@@ -1,27 +1,41 @@
-//const baseUrl = process.env.REACT_APP_API_URL;
+import "../styles/Leaderboard.css";
+import { Dog } from "../utils/interfaces";
+import { displayDogName } from "../utils/displayDogName";
+import { displayMedal } from "../utils/displayMedal";
 
-export default function Leaderboard(): JSX.Element {
+interface Props {
+  dogs: Dog[];
+}
+
+export default function Leaderboard(props: Props): JSX.Element {
+  const sortedDogs = props.dogs
+    .sort(function (a, b) {
+      return b.votes - a.votes;
+    })
+    .slice(0, 10);
+
   return (
     <table className="table">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
+          <th scope="col">Dog Breed</th>
+          <th scope="col">Votes</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry the Bird</td>
-        </tr>
+        {sortedDogs.map((dog, index) => {
+          return (
+            <tr key={dog.id}>
+              <th scope="row" className="leaderboard-position">
+                {displayMedal(index)}
+                {index + 1}
+              </th>
+              <td>{displayDogName(dog.breed)}</td>
+              <td className="leaderboard-votes">{dog.votes}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

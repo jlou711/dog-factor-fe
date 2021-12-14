@@ -21,7 +21,7 @@ function App(): JSX.Element {
     return dogArray;
   }
 
-  function getRandomBreed(dogArray: string[]) {
+  function getRandomBreeds(dogArray: string[]) {
     let breed1 = "";
     let breed2 = "";
 
@@ -34,9 +34,7 @@ function App(): JSX.Element {
   }
 
   const dogArray = getDogBreeds();
-  const dogBreedsCompare = getRandomBreed(dogArray);
-  const breed1 = dogBreedsCompare[0];
-  const breed2 = dogBreedsCompare[1];
+  const [breed1, breed2] = getRandomBreeds(dogArray);
 
   const getRandomDogs = async () => {
     let res = await axios.get(
@@ -49,7 +47,6 @@ function App(): JSX.Element {
     );
     setDogs((dogs) => [...dogs, { breed: breed2, img: res.data.message }]);
   };
-
   useEffect(() => {
     getRandomDogs();
   }, []);

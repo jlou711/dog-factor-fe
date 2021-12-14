@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../styles/DogPicker.css";
 import { Dog } from "../utils/interfaces";
 
@@ -38,7 +37,7 @@ export default function DogPicker(props: Props): JSX.Element {
               alt="..."
             />
             <div className="carousel-caption d-none d-md-block">
-              <button onClick={() => console.log("First")}>
+              <button onClick={() => console.log(props.dogs[0].breed)}>
                 Vote for {props.dogs[0] ? props.dogs[0].breed : ""}
               </button>
             </div>
@@ -50,7 +49,7 @@ export default function DogPicker(props: Props): JSX.Element {
               alt="..."
             />
             <div className="carousel-caption d-none d-md-block">
-              <button onClick={() => console.log("Second")}>
+              <button onClick={() => console.log(props.dogs[1].breed)}>
                 Vote for {props.dogs[1] ? props.dogs[1].breed : ""}
               </button>
             </div>

@@ -6,10 +6,6 @@ interface Props {
 }
 
 export default function DogPicker(props: Props): JSX.Element {
-  //user clicks a vote
-  // do a get request to see if the breed/sub-breed already exists?
-  // if exists => update the vote by +1
-  // if doesnt => post request set the vote to 1
   return (
     <div className="container-fluid dog-carousel">
       <div id="carouselDog" className="carousel slide" data-bs-ride="carousel">
@@ -32,7 +28,7 @@ export default function DogPicker(props: Props): JSX.Element {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src={props.dogs[0] ? props.dogs[0].img : ""}
+              src={props.dogs[0] ? props.dogs[0].image[0] : ""}
               className="d-block w-100"
               alt="..."
             />
@@ -44,7 +40,7 @@ export default function DogPicker(props: Props): JSX.Element {
           </div>
           <div className="carousel-item">
             <img
-              src={props.dogs[1] ? props.dogs[1].img : ""}
+              src={props.dogs[1] ? props.dogs[1].image[0] : ""}
               className="d-block w-100"
               alt="..."
             />

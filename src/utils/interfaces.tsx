@@ -1,4 +1,6 @@
 export interface Dog {
   breed: string;
-  img: string;
+  id: string;
+  image: string;
+  votes: number;
 }

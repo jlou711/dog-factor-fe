@@ -37,7 +37,10 @@ function App(): JSX.Element {
           )}
           {leaderboard && (
             <div className="col-md-3">
-              <Leaderboard leaderboardOfDogs={leaderboard} />
+              <Leaderboard
+                leaderboardOfDogs={leaderboard}
+                handleRefresh={getLeaderboard}
+              />
             </div>
           )}
           {!dogs && <p>Loading...</p>}

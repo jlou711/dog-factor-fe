@@ -2,10 +2,13 @@ import "../styles/Leaderboard.css";
 import { Dog } from "../utils/interfaces";
 import { displayDogName } from "../utils/displayDogName";
 import { displayMedal } from "../utils/displayMedal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
 // import { useState } from "react";
 
 interface Props {
   leaderboardOfDogs: Dog[];
+  handleRefresh: () => void;
 }
 
 export default function Leaderboard(props: Props): JSX.Element {
@@ -14,7 +17,10 @@ export default function Leaderboard(props: Props): JSX.Element {
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Dog Breed</th>
+          <th scope="col">
+            Dog Breed{" "}
+            <FontAwesomeIcon icon={faSync} onClick={props.handleRefresh} />
+          </th>
           <th scope="col">Votes</th>
         </tr>
       </thead>

@@ -5,33 +5,18 @@ import { displayDogName } from "../utils/displayDogName";
 
 interface Props {
   dogs: Dog[];
+  handleNewDogs: () => void;
 }
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
 export default function DogCard(props: Props): JSX.Element {
-  const { breed1, breed2 } = getRandomBreeds(props.dogs);
-
   const handleVote = async (breed: Dog | undefined) => {
     if (breed) {
       await axios.put(`${baseUrl}/${breed.id}`);
+      props.handleNewDogs();
     }
   };
-
-  function getRandomBreeds(dogArray: Dog[]) {
-    let breed1;
-    let breed2;
-    if (dogArray.length > 0) {
-      const num1 = Math.floor(Math.random() * dogArray.length);
-      const num2 = Math.floor(Math.random() * dogArray.length);
-      breed1 = dogArray[Math.floor(Math.random() * dogArray.length)];
-      breed2 = dogArray[Math.floor(Math.random() * dogArray.length)];
-      if (num1 === num2) {
-        getRandomBreeds(props.dogs);
-      }
-    }
-    return { breed1, breed2 };
-  }
 
   function getRandomImage(breed: Dog) {
     const breedImages = breed.image.replaceAll(/[{}"]/g, "").split(",");
@@ -41,31 +26,31 @@ export default function DogCard(props: Props): JSX.Element {
     <div className="card-group">
       <div className="card">
         <img
-          src={breed1 ? getRandomImage(breed1) : ""}
+          src={props.dogs[0] ? getRandomImage(props.dogs[0]) : ""}
           className="card-img-top"
           alt="..."
         />
         <div className="card-body">
           <h5 className="card-title">
-            Vote for {breed1 ? displayDogName(breed1.breed) : ""}
+            Vote for {props.dogs[0] ? displayDogName(props.dogs[0].breed) : ""}
           </h5>
           <p className="card-text">
-            <button onClick={() => handleVote(breed1)}>Vote</button>
+            <button onClick={() => handleVote(props.dogs[0])}>Vote</button>
           </p>
         </div>
       </div>
       <div className="card">
         <img
-          src={breed2 ? getRandomImage(breed2) : ""}
+          src={props.dogs[1] ? getRandomImage(props.dogs[1]) : ""}
           className="card-img-top"
           alt="..."
         />
         <div className="card-body">
           <h5 className="card-title">
-            Vote for {breed2 ? displayDogName(breed2.breed) : ""}
+            Vote for {props.dogs[1] ? displayDogName(props.dogs[1].breed) : ""}
           </h5>
           <p className="card-text">
-            <button onClick={() => handleVote(breed2)}>Vote</button>
+            <button onClick={() => handleVote(props.dogs[1])}>Vote</button>
           </p>
         </div>
       </div>

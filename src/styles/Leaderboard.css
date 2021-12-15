@@ -2,3 +2,10 @@
 .leaderboard-votes {
   text-align: center;
 }
+
+.syncIcon {
+  margin-left: 10px;
+}
+.syncIcon:hover {
+  color: rgba(161, 175, 177, 0.9);
+}

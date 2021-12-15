@@ -3,3 +3,15 @@
   height: 25vw;
   object-fit: cover;
 }
+
+.card-group {
+  box-shadow: 5px 4px 5px -1px rgba(0, 0, 0, 0.3);
+}
+.card-body {
+  text-align: center;
+}
+
+.card {
+  border: 3px solid black;
+  border-radius: 15px;
+}

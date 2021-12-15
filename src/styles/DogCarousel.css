@@ -2,11 +2,12 @@
   width: 100%;
   height: 25vw;
   object-fit: cover;
+  margin: 20px;
+  margin-bottom: 50px;
 }
 
 
 .dog-carousel{
-  /* width: 33%; */
   height: 20px;
 
     

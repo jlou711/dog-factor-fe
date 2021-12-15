@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import { Dog } from "./utils/interfaces";
 import DogCard from "./components/DogCard";
 import Leaderboard from "./components/Leaderboard";
+import DogPodiumCarousel from "./components/DogPodiumCarousel";
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
@@ -41,6 +42,16 @@ function App(): JSX.Element {
             </div>
           )}
           {!dogs && <p>Loading...</p>}
+        </div>
+        <div className="row">
+          {leaderboard &&
+            leaderboard.slice(0, 3).map((dog, index) => {
+              return (
+                <div className="col-md-12" key={index}>
+                  <DogPodiumCarousel dog={dog} position={index} />
+                </div>
+              );
+            })}
         </div>
       </div>
     </>

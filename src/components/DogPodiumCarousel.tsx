@@ -8,8 +8,16 @@ interface Props {
   position: number;
 }
 
+
 export default function DogPodiumCarousel(props: Props): JSX.Element {
+  /*accessing image from the dog object that is being passed in via App.tsx 
+  and we are using regex to put it into a cleaner format */
   const breedImages = props.dog.image.replaceAll(/[{}"]/g, "").split(",");
+
+  /* dog podium carousel 
+  - line 21 makes each carousel unique "carouselDog${props.position}" which allows for distinct arrows to slide through each distinct carousel
+  - looping through each image and creating a distinct carousel for each.
+  */ 
   return (
     <div className="container-fluid dog-carousel">
       <div

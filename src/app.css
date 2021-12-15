@@ -1,6 +1,13 @@
-.row{
-    /* display: flex;
+.podium-container{ 
+    display:flex;
+    /* margin: 10px; */
     flex-direction: row;
-    justify-content: space-between;
-   */
+    justify-content: center;
+    width: 500px;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+   
+
 }
+

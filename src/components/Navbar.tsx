@@ -1,3 +1,4 @@
+/* displays the top level of the app with 'Dog factor' */
 export default function Navbar(): JSX.Element {
   return (
     <nav className="navbar navbar-dark bg-primary">

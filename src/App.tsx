@@ -9,14 +9,20 @@ const baseUrl = process.env.REACT_APP_API_URL;
 
 function App(): JSX.Element {
   const [dogs, setDogs] = useState<Dog[]>();
+  const [leaderboard, setLeaderboard] = useState<Dog[]>();
 
   const getDogs = async () => {
-    const res = await axios.get(`${baseUrl}/`);
+    const res = await axios.get(`${baseUrl}/random`);
     setDogs(res.data);
+  };
+  const getLeaderboard = async () => {
+    const res = await axios.get(`${baseUrl}/leaderboard`);
+    setLeaderboard(res.data);
   };
 
   useEffect(() => {
     getDogs();
+    getLeaderboard();
   }, []);
 
   return (
@@ -25,16 +31,16 @@ function App(): JSX.Element {
       <div className="container mt-5">
         <div className="row">
           {dogs && (
-            <>
-              <div className="col-md-9">
-                <DogCard dogs={dogs} />
-              </div>
-              <div className="col-md-3">
-                <Leaderboard dogs={dogs} />
-              </div>
-            </>
+            <div className="col-md-9">
+              <DogCard dogs={dogs} handleNewDogs={getDogs} />
+            </div>
           )}
-          {!dogs && <p>Oops something went wrong!</p>}
+          {leaderboard && (
+            <div className="col-md-3">
+              <Leaderboard leaderboardOfDogs={leaderboard} />
+            </div>
+          )}
+          {!dogs && <p>Loading...</p>}
         </div>
       </div>
     </>

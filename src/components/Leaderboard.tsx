@@ -2,19 +2,13 @@ import "../styles/Leaderboard.css";
 import { Dog } from "../utils/interfaces";
 import { displayDogName } from "../utils/displayDogName";
 import { displayMedal } from "../utils/displayMedal";
+// import { useState } from "react";
 
 interface Props {
-  dogs: Dog[];
+  leaderboardOfDogs: Dog[];
 }
 
 export default function Leaderboard(props: Props): JSX.Element {
-  // Sort dogs by votes and get first 10 values
-  const sortedDogs = props.dogs
-    .sort(function (a, b) {
-      return b.votes - a.votes;
-    })
-    .slice(0, 10);
-
   return (
     <table className="table">
       <thead>
@@ -25,7 +19,7 @@ export default function Leaderboard(props: Props): JSX.Element {
         </tr>
       </thead>
       <tbody>
-        {sortedDogs.map((dog, index) => {
+        {props.leaderboardOfDogs.map((dog, index) => {
           return (
             <tr key={dog.id}>
               <th scope="row" className="leaderboard-position">

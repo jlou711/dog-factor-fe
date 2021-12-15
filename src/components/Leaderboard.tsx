@@ -8,6 +8,7 @@ interface Props {
 }
 
 export default function Leaderboard(props: Props): JSX.Element {
+  // Sort dogs by votes and get first 10 values
   const sortedDogs = props.dogs
     .sort(function (a, b) {
       return b.votes - a.votes;

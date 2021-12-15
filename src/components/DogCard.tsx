@@ -2,7 +2,6 @@ import "../styles/DogCard.css";
 import axios from "axios";
 import { Dog } from "../utils/interfaces";
 import { displayDogName } from "../utils/displayDogName";
-import { useState } from "react";
 
 interface Props {
   dogs: Dog[];

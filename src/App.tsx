@@ -47,9 +47,10 @@ function App(): JSX.Element {
   Podium - podium maps over the leaderboard results and displays the first 3 dogs in the podium (logic for distinction between carousel in podium component*/
   return (
     <>
-      <Navbar count={counter} />
+      <Navbar />
       <div className="container mt-5">
         <div className="row">
+          <h5 className="treat-title">You've given {counter} treats 🦴</h5>
           {dogs && (
             <div className="col-md-9">
               <DogCard

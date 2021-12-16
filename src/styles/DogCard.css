@@ -4,14 +4,37 @@
   object-fit: cover;
 }
 
-.card-group {
-  box-shadow: 5px 4px 5px -1px rgba(0, 0, 0, 0.3);
-}
 .card-body {
   text-align: center;
 }
 
 .card {
-  border: 3px solid black;
   border-radius: 15px;
+}
+
+.card-right {
+  margin-left: 15px;
+}
+
+.card-right img {
+  border: 10px solid white;
+  box-shadow: 5px 4px 5px -1px rgb(0 0 0 / 30%);
+}
+
+.card-left img {
+  border: 10px solid white;
+  box-shadow: -5px 4px 5px -1px rgb(0 0 0 / 30%);
+}
+
+.custom-vote-button {
+  background: #daa520;
+}
+
+.custom-vote-button:hover {
+  background: #f3b824;
+}
+
+.card-group {
+  margin-bottom: 100px;
+  margin-top: 40px;
 }

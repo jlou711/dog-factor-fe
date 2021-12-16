@@ -2,7 +2,6 @@ import "../styles/DogCarousel.css";
 import { Dog } from "../utils/interfaces";
 import { displayDogName } from "../utils/displayDogName";
 import { displayMedal } from "../utils/displayMedal";
-import { shuffle } from "../utils/shuffleArray";
 
 interface Props {
   dog: Dog;
@@ -23,43 +22,12 @@ export default function DogPodiumCarousel(props: Props): JSX.Element {
   */
   return (
     <>
-      {/* <h3 className="podium-title">
-        {displayMedal(props.position)}
-        {displayDogName(props.dog.breed)}
-      </h3> */}
       <div className="container-fluid dog-carousel">
         <div
           id={`carouselDog${props.position}`}
           className="carousel slide"
           data-bs-ride="carousel"
         >
-          {/* <div className="carousel-indicators">
-            {breedImages.map((image, index) => {
-              if (index === 0) {
-                return (
-                  <button
-                    key={index}
-                    type="button"
-                    data-bs-target={`#carouselDog${props.position}`}
-                    data-bs-slide-to="0"
-                    className="active hideMe"
-                    aria-current="true"
-                    aria-label="Slide 1"
-                  ></button>
-                );
-              }
-              return (
-                <button
-                  key={index}
-                  type="button"
-                  className="hideMe"
-                  data-bs-target={`#carouselDog${props.position}`}
-                  data-bs-slide-to={index}
-                  aria-label={`Slide ${index + 1}`}
-                ></button>
-              );
-            })}
-          </div> */}
           <div className="carousel-inner">
             {breedImages.map((image, index) => {
               if (index === 0) {

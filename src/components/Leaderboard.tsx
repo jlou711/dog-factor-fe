@@ -30,7 +30,7 @@ export default function Leaderboard(props: Props): JSX.Element {
 
   /* leaderboard is displayed in a table format and medal is displayed according leaderboard index (logic found in utils for display medals function) */
   return (
-    <table className="table">
+    <table className="table table-light">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -43,7 +43,7 @@ export default function Leaderboard(props: Props): JSX.Element {
               title="Click to refresh leaderboard"
             />
           </th>
-          <th scope="col">Votes</th>
+          <th scope="col">Treats</th>
         </tr>
       </thead>
       <tbody>

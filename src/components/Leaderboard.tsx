@@ -15,8 +15,6 @@ interface Props {
 //baseUrl is a variable which is set to our heroku app url
 const baseUrl = process.env.REACT_APP_API_URL;
 
-
-
 export default function Leaderboard(props: Props): JSX.Element {
   /* sets the top 10 dogs in the leaderboard to an initial use state of "leaderboard" */
   const [leaderboard, setLeaderboard] = useState<Dog[]>(
@@ -24,8 +22,7 @@ export default function Leaderboard(props: Props): JSX.Element {
     props.leaderboardOfDogs
   );
 
-  
-     /*when the refresh leaderboard icon is pressed, the useState is updated and stored in leaderboard*/
+  /*when the refresh leaderboard icon is pressed, the useState is updated and stored in leaderboard*/
   const getLeaderboard = async () => {
     const res = await axios.get(`${baseUrl}/leaderboard`);
     setLeaderboard(res.data);
@@ -33,14 +30,20 @@ export default function Leaderboard(props: Props): JSX.Element {
 
   /* leaderboard is displayed in a table format and medal is displayed according leaderboard index (logic found in utils for display medals function) */
   return (
-    <table className="table">
+    <table className="table table-light">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">
-            Dog Breed <FontAwesomeIcon icon={faSync} onClick={getLeaderboard} />
+            Dog Breed{" "}
+            <FontAwesomeIcon
+              icon={faSync}
+              onClick={getLeaderboard}
+              className="syncIcon"
+              title="Click to refresh leaderboard"
+            />
           </th>
-          <th scope="col">Votes</th>
+          <th scope="col">Treats</th>
         </tr>
       </thead>
       <tbody>

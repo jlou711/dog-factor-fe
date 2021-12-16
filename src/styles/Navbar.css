@@ -1,0 +1,18 @@
+.bones-logo {
+  height: 10vh;
+}
+
+.navbar-custom {
+  background-color: #c90e07;
+}
+
+.navbar-custom h1 {
+  color: white;
+  font-weight: bold;
+  font-size: xx-large;
+  text-shadow: 2px 3px #000;
+}
+
+.navbar-title-custom {
+  color: white;
+}

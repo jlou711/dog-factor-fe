@@ -11,11 +11,9 @@ import "./app.css";
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
-
-//
-
 function App(): JSX.Element {
   const [dogs, setDogs] = useState<Dog[]>();
+  const [counter, setCounter] = useState<number>(0);
   const [leaderboard, setLeaderboard] = useState<Dog[]>();
 
   /*async function which communicates with the backend at the "/random" endpoint gets the 2 dogs 
@@ -25,13 +23,12 @@ function App(): JSX.Element {
     setDogs(res.data);
   };
 
-   /*async function which communicates with the backend at the "/leaderboard" endpoint gets 10 dogs 
+  /*async function which communicates with the backend at the "/leaderboard" endpoint gets 10 dogs 
  and stores it in the "leaderboard" state variable (line 18) */
   const getLeaderboard = async () => {
     const res = await axios.get(`${baseUrl}/leaderboard`);
     setLeaderboard(res.data);
   };
-
 
   /* Calls useEffect which calls getDogs and getLeaderboard on the first render */
   useEffect(() => {
@@ -39,6 +36,9 @@ function App(): JSX.Element {
     getLeaderboard();
   }, []);
 
+  const handleUserCounter = () => {
+    setCounter((prev) => prev + 1);
+  };
 
   /* app split into 4 components/sections  using bootstrap for styling */
   /* Navbar - navbar displayed
@@ -47,33 +47,39 @@ function App(): JSX.Element {
   Podium - podium maps over the leaderboard results and displays the first 3 dogs in the podium (logic for distinction between carousel in podium component*/
   return (
     <>
-
       <Navbar />
       <div className="container mt-5">
         <div className="row">
+          <h5 className="treat-title">You've given {counter} treats 🦴</h5>
           {dogs && (
             <div className="col-md-9">
-              <DogCard dogs={dogs} handleNewDogs={getDogs} />
+              <DogCard
+                dogs={dogs}
+                handleNewDogs={getDogs}
+                handleUserCounter={handleUserCounter}
+              />
             </div>
           )}
           {leaderboard && (
             <div className="col-md-3">
+              <h3 className="app-title">⭐️ Leaderboard ⭐️</h3>
               <Leaderboard leaderboardOfDogs={leaderboard} />
             </div>
           )}
           {!dogs && <p>Loading...</p>}
         </div>
         <div className="row">
-          <div className="podium-container container">
-          {leaderboard &&
-            leaderboard.slice(0, 3).map((dog, index) => {
-              return (
-                <div className="col-md-12"  key={index}>
-                  <DogPodiumCarousel dog={dog} position={index} />
-                </div>
-              );
-            })}
-        </div>
+          <h3 className="app-title">🏆 The Good Bois 🏆</h3>
+          <div className="podium-container">
+            {leaderboard &&
+              leaderboard.slice(0, 3).map((dog, index) => {
+                return (
+                  <div className="col-md-4" key={index}>
+                    <DogPodiumCarousel dog={dog} position={index} />
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
     </>

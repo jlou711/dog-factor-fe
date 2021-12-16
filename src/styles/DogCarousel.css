@@ -6,9 +6,14 @@
   margin-bottom: 50px;
 }
 
+.carousel-item {
+  border: 5px solid;
+}
 
-.dog-carousel{
-  height: 20px;
+.podium-title {
+  text-align: center;
+}
 
-    
+.carousel {
+  box-shadow: 5px 4px 5px -1px rgba(0, 0, 0, 0.3);
 }
